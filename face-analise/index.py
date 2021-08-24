@@ -14,7 +14,7 @@ def lista_imagens():
 def indexa_colecao(imagens):
     for i in imagens:
         response = client.index_faces(
-            CollectionId='faces',
+            CollectionId='faces2',
             DetectionAttributes=[],
             ExternalImageId=i[:-4],
             Image={

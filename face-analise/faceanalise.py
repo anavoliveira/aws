@@ -6,7 +6,7 @@ s3 = boto3.resource('s3')
 
 def detecta_faces():
     faces_detectadas=client.index_faces(  #identifica as faces em uma imagem e adiciona o resultado em uma colecao
-        CollectionId='faces',
+        CollectionId='faces2',
         DetectionAttributes=['DEFAULT'],
         ExternalImageId="TEMPORARIA",
         Image={
@@ -33,7 +33,7 @@ def compara_imagens(faceId_detectadas):
     for ids in faceId_detectadas:
         resultado_comparacao.append(
             client.search_faces(
-                CollectionId='faces',
+                CollectionId='faces2',
                 FaceId=ids,
                 FaceMatchThreshold=80, # o quanto de similaridade
                 MaxFaces=10,
@@ -52,11 +52,19 @@ def gera_dados_json(resultado_comparacao):
 
     return dados_json
 
+
+def publica_dados(dados_json):
+    arquivo = s3.Object('site-face-analise', 'dados.json')
+    arquivo.put(Body=json.dumps(dados_json))
+
+
 faces_detectadas = detecta_faces()
 faceId_detectadas = cria_lista_faceId_detectadas(faces_detectadas)
 resultado_comparacao = compara_imagens(faceId_detectadas)
-dados_json= gera_dados_json(resultado_comparacao)
+dados_json = gera_dados_json(resultado_comparacao)
+publica_dados(dados_json)
 print(json.dumps(dados_json, indent=4))
+
 #print(json.dumps(resultado_comparacao, indent=4))
 #print(json.dumps(faces_detectadas, indent=4))
 #print(faceId_detectadas)
