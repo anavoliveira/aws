@@ -50,6 +50,7 @@ def gera_dados_json(resultado_comparacao):
                 perfil = dict(nome=face_matches['FaceMatches'][0]['Face']['ExternalImageId'], 
                      faceMatch=round(face_matches['FaceMatches'][0]['Similarity'], 2))
                 dados_json.append(perfil)
+            
 
     return dados_json
 
@@ -68,4 +69,3 @@ print(json.dumps(dados_json, indent=4))
 
 #print(json.dumps(resultado_comparacao, indent=4))
 #print(faceId_detectadas))
-

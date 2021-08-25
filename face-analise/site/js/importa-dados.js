@@ -1,6 +1,6 @@
 
 $.ajax(
-  { url: 'https://s3.amazonaws.com/face-analise-image/dados.json',
+  { url: 'https://s3.amazonaws.com/site-face-analise/dados.json',
    dataType: 'json',
    crossDomain: true,
    success: function (dados) {
@@ -11,7 +11,6 @@ $.ajax(
 
 
   function montaTabela(dados) {
-
     
     for (var dados of dados) {
       var trTabela = document.createElement("tr");
@@ -26,7 +25,7 @@ $.ajax(
       tdInfoFoto = document.createElement("img");
       tdInfoFoto.height = 100;
       tdInfoFoto.width = 68;
-      tdInfoFoto.src = 'https://s3.amazonaws.com/face-analise-image/' + dados.nome + '.png';
+      tdInfoFoto.src = 'https://s3.amazonaws.com/face-analise-image/' + dados.nome;
      
 
 

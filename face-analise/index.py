@@ -16,7 +16,7 @@ def indexa_colecao(imagens):
         response = client.index_faces(
             CollectionId='faces2',
             DetectionAttributes=[],
-            ExternalImageId=i[:-4],
+            ExternalImageId=i,
             Image={
                 'S3Object':{
                     'Bucket': 'face-analise-image',
