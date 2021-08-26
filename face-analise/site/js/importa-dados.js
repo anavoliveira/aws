@@ -19,13 +19,13 @@ $.ajax(
       var tdInfoNome = document.createElement("td");
       var tdInfoFaceMatch = document.createElement("td");
       
-
+      
       tdInfoNome.textContent = dados.nome;
       tdInfoFaceMatch.textContent = dados.faceMatch;
       tdInfoFoto = document.createElement("img");
       tdInfoFoto.height = 100;
       tdInfoFoto.width = 68;
-      tdInfoFoto.src = 'https://s3.amazonaws.com/face-analise-image/' + dados.nome;
+      tdInfoFoto.src = 'https://face-analise-image.s3.amazonaws.com/' + dados.nome;
      
 
 
