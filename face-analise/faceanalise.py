@@ -5,7 +5,7 @@ client = boto3.client('rekognition')
 s3 = boto3.resource('s3')
 
 def detecta_faces():
-    faces_detectadas=client.index_faces(  #identifica as faces em uma imagem e adiciona o resultado em uma colecao
+    faces_detectadas=client.index_faces( 
         CollectionId='faces2',
         DetectionAttributes=['DEFAULT'],
         ExternalImageId="TEMPORARIA",
@@ -23,7 +23,8 @@ def cria_lista_faceId_detectadas(faces_detectadas):
     faceId_detectadas = []
 
     for imagens in range(len(faces_detectadas['FaceRecords'])):
-        faceId_detectadas.append(faces_detectadas['FaceRecords'][imagens]['Face']['FaceId'])
+        faceId_detectadas.append(faces_detectadas['FaceRecords']/
+        [imagens]['Face']['FaceId'])
     return faceId_detectadas
 
 def compara_imagens(faceId_detectadas):
@@ -41,7 +42,7 @@ def compara_imagens(faceId_detectadas):
 
     return resultado_comparacao
 
-def gera_dados_json(resultado_comparacao):
+def gera_dados_json(resultado_comparacao):  
     dados_json = []
     for face_matches in resultado_comparacao:
         if(len(face_matches.get('FaceMatches')))>=1:
